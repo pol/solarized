@@ -10,7 +10,7 @@ end
 def load_savefile
 begin
     File.foreach(savefile()) do |line|
-    k, v = *line.split(/=/, 2)
+    k, v = line.split('=', 2)
     self[k] = v.strip
     end
 rescue Errno::ENOENT
@@ -28,7 +28,7 @@ parameterize = lambda {|path|
 }
 
 if arg = c['configure_args'].split.detect {|arg| /--with-make-prog=/ =~ arg }
-    makeprog = arg.sub(/'/, '').split(/=/, 2)[1]
+    makeprog = arg.sub("'", '').split('=', 2)[1]
 else
     makeprog = 'make'
 end
